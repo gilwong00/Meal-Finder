@@ -26,6 +26,14 @@ const Searchbar: React.FunctionComponent<SearchbarProps> = () => {
             as={<MaterialIcons name='search' />}
           />
         }
+        InputRightElement={
+          <Icon
+            size='sm'
+            m={2}
+            color='gray.400'
+            as={<MaterialIcons name='close' />}
+          />
+        }
       />
     </VStack>
   );

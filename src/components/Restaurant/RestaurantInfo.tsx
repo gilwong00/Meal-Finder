@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image, Text, Box, Stack, Heading } from 'native-base';
+import { Image, Text, Box, Stack, Heading, Icon } from 'native-base';
+import { MaterialIcons } from '@expo/vector-icons';
 // import styled from 'styled-components/native';
 
 interface RestaurantInfoProps {
@@ -28,9 +29,15 @@ const RestaurantInfo: React.FC<RestaurantInfoProps> = ({
         height={150}
         roundedTop='md'
       />
-      <Text bold position='absolute' color='white' top={0} m={[4, 4, 8]}>
-        NEWS
-      </Text>
+      <Icon
+        position='absolute'
+        color='white'
+        top={0}
+        right={0}
+        m={[4, 4, 8]}
+        as={<MaterialIcons name='favorite-outline' />}
+      />
+
       <Stack space={4} p={[4, 4, 8]}>
         <Text color='gray.400'>June 22, 2021</Text>
         <Heading size={'md'} noOfLines={2}>
