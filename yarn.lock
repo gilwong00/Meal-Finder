@@ -1176,6 +1176,21 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@expo-google-fonts/inter@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/inter/-/inter-0.2.0.tgz#2934c1e510d58b652e3a5150ca7f76f55b89e84a"
+  integrity sha512-gIjkti/NxHABPc4xB/AlgSpbLJod/8Iill7DfW+rh2CHv3jjz7I7SLQY8u/3NoF8zZk0GNU8gTZkVwGQibuWcQ==
+
+"@expo-google-fonts/lato@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/lato/-/lato-0.2.0.tgz#e096ed61d23307932ec4fbe3f9de8a3d6248706f"
+  integrity sha512-euVC8IfCpHlI0MDgvf6MNWrgnp4pPvAMiEDUCBmau3cvJBeMASQdtOF+Lz555hzgsMfDV5MbFbWRe+RvylZ1qQ==
+
+"@expo-google-fonts/oswald@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/oswald/-/oswald-0.2.0.tgz#d342b25b0e2c9e5325b3415c1ce840b6a6536316"
+  integrity sha512-+e83B3kDQ9PUEjVXQhxUs8yrJriTQYLEn8Bp25UrPD6zq9x7W/NzHIlLQ6cS0N1nmOeOl2gKfcRqQqTkx2K5kw==
+
 "@expo/config-plugins@2.0.4":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@expo/config-plugins/-/config-plugins-2.0.4.tgz#955fd70a2aeefbe99ec71cecb1d7ea7b626dc79e"
@@ -4823,6 +4838,11 @@ inquirer@^3.0.6:
     string-width "^2.1.0"
     strip-ansi "^4.0.0"
     through "^2.3.6"
+
+install@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/install/-/install-0.13.0.tgz#6af6e9da9dd0987de2ab420f78e60d9c17260776"
+  integrity sha512-zDml/jzr2PKU9I8J/xyZBQn8rPCAY//UOYNmR01XwNwyfhEWObo2SWfSl1+0tm1u6PhxLwDnfsT/6jB7OUxqFA==
 
 internal-slot@^1.0.3:
   version "1.0.3"

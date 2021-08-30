@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text, Box, Stack, Heading, Icon } from 'native-base';
+import { Image, Text, Box, Stack, Heading, Icon, useTheme } from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons';
 // import styled from 'styled-components/native';
 
@@ -18,8 +18,10 @@ interface RestaurantInfoProps {
 const RestaurantInfo: React.FC<RestaurantInfoProps> = ({
   restaurant = { name: 'temp' }
 }) => {
+  const { fontSizes } = useTheme();
+  console.log(restaurant);
   return (
-    <Box bg='white' shadow={2} rounded='lg' maxWidth='100%'>
+    <Box bg='bg.primary' shadow={2} rounded='lg' maxWidth='100%'>
       <Image
         source={{
           uri: 'https://sample-example.nativebase.io/static/media/dawki-river.ebbf5434.png'
@@ -40,7 +42,12 @@ const RestaurantInfo: React.FC<RestaurantInfoProps> = ({
 
       <Stack space={4} p={[4, 4, 8]}>
         <Text color='gray.400'>June 22, 2021</Text>
-        <Heading size={'md'} noOfLines={2}>
+        <Heading
+          size={'md'}
+          noOfLines={2}
+          color='ui.primary'
+          fontSize={fontSizes.body}
+        >
           The Stunning Dawki River in Meghalaya is So Clear That Boats Appear
           Floating in Air
         </Heading>

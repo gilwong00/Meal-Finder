@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, StatusBar } from 'react-native';
 import { RestaurantInfo } from '../components/Restaurant';
 import { Searchbar } from '../components/Searchbar';
 
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
+  ${StatusBar?.currentHeight && `margin-top: ${StatusBar?.currentHeight}px`}
 `;
 
 const RestaurantListContainer = styled.View`
@@ -20,7 +21,7 @@ const RestaurantsScreen: React.FC<RestaurantsScreenProps> = () => {
     <SafeArea>
       <Searchbar />
       <RestaurantListContainer>
-        <RestaurantInfo />
+        <RestaurantInfo restaurant={{} as any} />
       </RestaurantListContainer>
     </SafeArea>
   );
