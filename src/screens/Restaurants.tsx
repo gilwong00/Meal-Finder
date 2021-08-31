@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { SafeAreaView, StatusBar } from 'react-native';
+import { SafeAreaView, StatusBar, FlatList } from 'react-native';
 import { RestaurantInfo } from '../components/Restaurant';
 import { Searchbar } from '../components/Searchbar';
 
@@ -9,10 +9,11 @@ const SafeArea = styled(SafeAreaView)`
   ${StatusBar?.currentHeight && `margin-top: ${StatusBar?.currentHeight}px`}
 `;
 
-const RestaurantListContainer = styled.View`
-  flex: 1;
-  padding: 16px;
-`;
+const RestaurantList = styled(FlatList).attrs({
+  contentContainerStyle: {
+    padding: 16
+  }
+})``;
 
 interface RestaurantsScreenProps {}
 
@@ -20,9 +21,14 @@ const RestaurantsScreen: React.FC<RestaurantsScreenProps> = () => {
   return (
     <SafeArea>
       <Searchbar />
-      <RestaurantListContainer>
-        <RestaurantInfo restaurant={{} as any} />
-      </RestaurantListContainer>
+      <RestaurantList
+        data={[
+          { name: 'temp', rating: 4 },
+          { name: 'temp2', rating: 2 }
+        ]}
+        renderItem={() => <RestaurantInfo restaurant={{} as any} />}
+        keyExtractor={item => item?.name as any}
+      />
     </SafeArea>
   );
 };

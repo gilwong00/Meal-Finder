@@ -1,6 +1,17 @@
 import React from 'react';
-import { Image, Text, Box, Stack, Heading, Icon, useTheme } from 'native-base';
+import {
+  Image,
+  Text,
+  Box,
+  Stack,
+  Heading,
+  Icon,
+  useTheme,
+  Flex
+} from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons';
+import { Star } from '../Star';
+import { OpenNowIcon } from '../OpenNowIcon';
 // import styled from 'styled-components/native';
 
 interface RestaurantInfoProps {
@@ -15,13 +26,12 @@ interface RestaurantInfoProps {
   };
 }
 
-const RestaurantInfo: React.FC<RestaurantInfoProps> = ({
-  restaurant = { name: 'temp' }
-}) => {
+const RestaurantInfo: React.FC<RestaurantInfoProps> = ({ restaurant }) => {
   const { fontSizes } = useTheme();
-  console.log(restaurant);
+  const ratings = Array.from(new Array(Math.floor(restaurant.rating ?? 3)));
+
   return (
-    <Box bg='bg.primary' shadow={2} rounded='lg' maxWidth='100%'>
+    <Box bg='bg.primary' shadow={2} rounded='lg' maxWidth='100%' mb={5}>
       <Image
         source={{
           uri: 'https://sample-example.nativebase.io/static/media/dawki-river.ebbf5434.png'
@@ -41,20 +51,39 @@ const RestaurantInfo: React.FC<RestaurantInfoProps> = ({
       />
 
       <Stack space={4} p={[4, 4, 8]}>
-        <Text color='gray.400'>June 22, 2021</Text>
         <Heading
           size={'md'}
           noOfLines={2}
           color='ui.primary'
           fontSize={fontSizes.body}
         >
-          The Stunning Dawki River in Meghalaya is So Clear That Boats Appear
-          Floating in Air
+          Restaurant Name
         </Heading>
-        <Text lineHeight={[5, 5, 7]} noOfLines={4} color='gray.700'>
-          With lush green meadows, rivers clear as crystal, pine-covered hills,
-          gorgeous waterfalls, lakes and majestic forests, the mesmerizing.
-          Meghalaya is truly a Nature lover’s paradise…
+
+        <Flex direction='row' justifyContent='space-between'>
+          <Flex direction='row'>
+            {ratings.map((_, i) => (
+              <Star key={i} />
+            ))}
+          </Flex>
+          <Flex direction='row-reverse' justifyContent='space-between'>
+            {restaurant.isOpenNow && <OpenNowIcon />}
+            {restaurant.isClosedTemporarily && (
+              <Text px={5} color='text.error'>
+                CLOSED TEMPORARILY
+              </Text>
+            )}
+          </Flex>
+        </Flex>
+
+        <Text
+          lineHeight={[5, 5, 7]}
+          noOfLines={2}
+          color='gray.700'
+          fontFamily='body'
+          fontSize={fontSizes.caption}
+        >
+          Restaurant Address
         </Text>
       </Stack>
     </Box>
