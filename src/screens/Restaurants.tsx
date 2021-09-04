@@ -27,7 +27,7 @@ const RestaurantsScreen: React.FC<RestaurantsScreenProps> = () => {
           { name: 'temp2', rating: 2 }
         ]}
         renderItem={() => <RestaurantInfo restaurant={{} as any} />}
-        keyExtractor={item => item?.name as any}
+        keyExtractor={(item: any) => item?.name as any}
       />
     </SafeArea>
   );
