@@ -6,14 +6,14 @@ interface SearchbarProps {}
 
 const Searchbar: React.FunctionComponent<SearchbarProps> = () => {
   return (
-    <VStack width='100%' space={2} p={2} shadow={5}>
+    <VStack width='100%' space={2} px={4} py={3} shadow={5}>
       <Input
         placeholder='Search'
         bg='#fff'
         width='100%'
         borderRadius={4}
         py={3}
-        px={1}
+        px={2}
         fontSize={16}
         _web={{
           _focus: { borderColor: 'muted.300', style: { boxShadow: 'none' } }

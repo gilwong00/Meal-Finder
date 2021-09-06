@@ -12,6 +12,7 @@ import {
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
 import { MaterialIcons } from '@expo/vector-icons';
 import theme from './src/theme';
+import { RestaurantProdiver } from './src/context';
 
 function Settings() {
   return (
@@ -44,42 +45,44 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={theme}>
-      <NavigationContainer>
-        <Tab.Navigator
-          tabBarOptions={{
-            activeTintColor: 'purple'
-          }}
-        >
-          <Tab.Screen
-            name='Restaurants'
-            component={RestaurantsScreen}
-            options={{
-              tabBarIcon: ({ color }) => (
-                <MaterialIcons name='restaurant' color={color} size={26} />
-              )
+      <RestaurantProdiver>
+        <NavigationContainer>
+          <Tab.Navigator
+            tabBarOptions={{
+              activeTintColor: 'purple'
             }}
-          />
-          <Tab.Screen
-            name='Map'
-            component={Map}
-            options={{
-              tabBarIcon: ({ color }) => (
-                <MaterialIcons name='map' color={color} size={26} />
-              )
-            }}
-          />
-          <Tab.Screen
-            name='Settings'
-            component={Settings}
-            options={{
-              tabBarIcon: ({ color }) => (
-                <MaterialIcons name='settings' color={color} size={26} />
-              )
-            }}
-          />
-        </Tab.Navigator>
-        <ExpoStatusBar style='auto' />
-      </NavigationContainer>
+          >
+            <Tab.Screen
+              name='Restaurants'
+              component={RestaurantsScreen}
+              options={{
+                tabBarIcon: ({ color }) => (
+                  <MaterialIcons name='restaurant' color={color} size={26} />
+                )
+              }}
+            />
+            <Tab.Screen
+              name='Map'
+              component={Map}
+              options={{
+                tabBarIcon: ({ color }) => (
+                  <MaterialIcons name='map' color={color} size={26} />
+                )
+              }}
+            />
+            <Tab.Screen
+              name='Settings'
+              component={Settings}
+              options={{
+                tabBarIcon: ({ color }) => (
+                  <MaterialIcons name='settings' color={color} size={26} />
+                )
+              }}
+            />
+          </Tab.Navigator>
+          <ExpoStatusBar style='auto' />
+        </NavigationContainer>
+      </RestaurantProdiver>
     </NativeBaseProvider>
   );
 }

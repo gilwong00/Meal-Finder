@@ -12,18 +12,11 @@ import {
 import { MaterialIcons } from '@expo/vector-icons';
 import { Star } from '../Star';
 import { OpenNowIcon } from '../OpenNowIcon';
+import { Restaurant } from '../../@types';
 // import styled from 'styled-components/native';
 
 interface RestaurantInfoProps {
-  restaurant: {
-    name: string;
-    icon: string;
-    photos: Array<string>;
-    address: unknown;
-    isOpenNow: boolean;
-    rating: number;
-    isClosedTemporarily: boolean;
-  };
+  restaurant: Restaurant;
 }
 
 const RestaurantInfo: React.FC<RestaurantInfoProps> = ({ restaurant }) => {
@@ -34,7 +27,7 @@ const RestaurantInfo: React.FC<RestaurantInfoProps> = ({ restaurant }) => {
     <Box bg='bg.primary' shadow={2} rounded='lg' maxWidth='100%' mb={5}>
       <Image
         source={{
-          uri: 'https://sample-example.nativebase.io/static/media/dawki-river.ebbf5434.png'
+          uri: restaurant.photos[0]
         }}
         alt='image base'
         resizeMode='cover'
@@ -57,7 +50,7 @@ const RestaurantInfo: React.FC<RestaurantInfoProps> = ({ restaurant }) => {
           color='ui.primary'
           fontSize={fontSizes.body}
         >
-          Restaurant Name
+          {restaurant.name}
         </Heading>
 
         <Flex direction='row' justifyContent='space-between'>
@@ -83,7 +76,7 @@ const RestaurantInfo: React.FC<RestaurantInfoProps> = ({ restaurant }) => {
           fontFamily='body'
           fontSize={fontSizes.caption}
         >
-          Restaurant Address
+          {restaurant.vicinity}
         </Text>
       </Stack>
     </Box>
