@@ -2,6 +2,7 @@ export { default as sanFranciscoMock } from './sanfrancisco';
 export { default as torontoMock } from './toronto';
 export { default as chicagoMock } from './chicago';
 export { default as antwerpMock } from './antwerp';
+export { default as mockLocations } from './locations';
 
 export const mockImages = [
   'https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg',

@@ -7,3 +7,8 @@ export interface Restaurant {
   rating: number;
   isClosedTemporarily: boolean;
 }
+
+export interface LatLng {
+  lng: number;
+  lat: number;
+}

@@ -20,9 +20,13 @@ const RestaurantList = styled(FlatList).attrs({
 })``;
 
 const LoadingContainer = styled(View)`
-  position: 'absolute';
-  top: '50%';
-  left: '50%';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+`;
+
+const Loader = styled(Spinner)`
+  margin-left: -25px;
 `;
 
 interface RestaurantsScreenProps {}
@@ -33,12 +37,7 @@ const RestaurantsScreen: React.FC<RestaurantsScreenProps> = () => {
   if (loading)
     return (
       <LoadingContainer>
-        <Spinner
-          size='lg'
-          style={{ marginLeft: -20 }}
-          accessibilityLabel='loading'
-          color='purple.800'
-        />
+        <Loader size='lg' accessibilityLabel='loading' color='purple.800' />
       </LoadingContainer>
     );
 
