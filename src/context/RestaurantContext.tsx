@@ -1,12 +1,14 @@
 import React, {
   useState,
   useEffect,
+  useContext,
   createContext,
   SetStateAction,
   Dispatch
 } from 'react';
 import { Restaurant } from '../@types';
 import { restaurantService } from '../services';
+import { LocationContext } from './LocationContext';
 
 interface RestaurantContext {
   restaurants: Array<Restaurant>;
@@ -31,6 +33,7 @@ export const RestaurantProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const { location } = useContext(LocationContext);
   const [restaurants, setRestaurants] = useState<Array<Restaurant>>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
@@ -39,7 +42,10 @@ export const RestaurantProvider = ({
     setLoading(true);
     setTimeout(async () => {
       try {
-        const data = await restaurantService.getRestaurants();
+        const data = await restaurantService.getRestaurants(
+          `${location?.lat},${location?.lng}`
+        );
+
         setRestaurants(data as any);
       } catch (err) {
         setError(err as Error);
@@ -47,7 +53,7 @@ export const RestaurantProvider = ({
         setLoading(false);
       }
     }, 2000);
-  }, []);
+  }, [location]);
 
   return (
     <RestaurantContext.Provider

@@ -32,7 +32,7 @@ export const LocationProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [searchTerm, setSearchTerm] = useState<string>('san francisco');
+  const [searchTerm, setSearchTerm] = useState<string>('San Francisco');
   const [location, setLocation] = useState<LatLng | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
