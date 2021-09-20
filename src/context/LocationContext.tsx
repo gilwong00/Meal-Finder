@@ -54,7 +54,7 @@ export const LocationProvider = ({
   };
 
   useEffect(() => {
-    handleSearch(searchTerm);
+    if (searchTerm) handleSearch(searchTerm);
   }, [searchTerm]);
 
   return (

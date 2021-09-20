@@ -53,7 +53,11 @@ const RestaurantInfo: React.FC<RestaurantInfoProps> = ({ restaurant }) => {
           {restaurant.name}
         </Heading>
 
-        <Flex direction='row' justifyContent='space-between'>
+        <Flex
+          direction='row'
+          justifyContent='space-between'
+          alignItems='center'
+        >
           <Flex direction='row'>
             {ratings.map((_, i) => (
               <Star key={i} />
@@ -62,7 +66,7 @@ const RestaurantInfo: React.FC<RestaurantInfoProps> = ({ restaurant }) => {
           <Flex direction='row-reverse' justifyContent='space-between'>
             {restaurant.isOpenNow && <OpenNowIcon />}
             {restaurant.isClosedTemporarily && (
-              <Text px={5} color='text.error'>
+              <Text px={5} pb={1} color='text.error'>
                 CLOSED TEMPORARILY
               </Text>
             )}
