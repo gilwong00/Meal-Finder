@@ -1,12 +1,13 @@
 /* eslint-disable curly */
 import React, { useContext } from 'react';
 import styled from 'styled-components/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { SafeAreaView, StatusBar, FlatList, View } from 'react-native';
 import { RestaurantInfo } from '../components/Restaurant';
 import { Searchbar } from '../components/Searchbar';
 import { RestaurantContext } from '../context/RestaurantContext';
 import { Restaurant } from '../@types';
-import { Spinner } from 'native-base';
+import { Spinner, Pressable } from 'native-base';
 
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
@@ -29,9 +30,21 @@ const Loader = styled(Spinner)`
   margin-left: -25px;
 `;
 
-interface RestaurantsScreenProps {}
+//https://reactnavigation.org/docs/5.x/typescript
+type RootStackParamList = {
+  Restaurants: undefined;
+  RestaurantDetail: undefined;
+};
 
-const RestaurantsScreen: React.FC<RestaurantsScreenProps> = () => {
+type ProfileScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'RestaurantDetail'
+>;
+
+type Props = {
+  navigation: ProfileScreenNavigationProp;
+};
+const RestaurantsScreen: React.FC<Props> = ({ navigation }) => {
   const { restaurants, loading } = useContext(RestaurantContext);
 
   if (loading)
@@ -47,7 +60,9 @@ const RestaurantsScreen: React.FC<RestaurantsScreenProps> = () => {
       <RestaurantList
         data={restaurants}
         renderItem={({ item }: { item: Restaurant }) => (
-          <RestaurantInfo restaurant={item} />
+          <Pressable onPress={() => navigation.navigate('RestaurantDetail')}>
+            <RestaurantInfo restaurant={item} />
+          </Pressable>
         )}
         keyExtractor={(item: Restaurant) => item?.name}
       />
