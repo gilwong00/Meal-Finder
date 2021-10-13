@@ -1,31 +1,43 @@
 package database
 
 import (
-	"database/sql"
 	"fmt"
+	"log"
+	"os"
+	"strconv"
+
+	"github.com/jmoiron/sqlx"
+	"github.com/joho/godotenv"
+	_ "github.com/lib/pq"
 )
 
-const (
-	host     = "localhost"
-	port     = 5432
-	user     = "postgres"
-	password = "password"
-	dbname   = "meals"
-)
+func Connect() *sqlx.DB {
+	err := godotenv.Load()
 
-func Connect() *sql.DB {
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
-		"password=%s dbname=%s sslmode=disable",
-		host, port, user, password, dbname)
-
-	db, err := sql.Open("postgres", psqlInfo)
 	if err != nil {
-		panic(err)
+		log.Fatal("Error getting env vars", err)
+		os.Exit(1)
 	}
 
-	err = db.Ping()
+	dbError, err := strconv.Atoi(os.Getenv("DB_PORT"))
+
 	if err != nil {
-		panic(err)
+		log.Fatalln(err)
+	}
+
+	host, port, user, password, dbname :=
+		os.Getenv("DB_HOST"),
+		dbError,
+		os.Getenv("DB_USER"),
+		os.Getenv("DB_HOST"),
+		os.Getenv("DB_PASSWORD")
+
+	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s", host, port, user, password, dbname)
+
+	db, err := sqlx.Connect("postgres", psqlInfo)
+
+	if err != nil {
+		log.Fatalln(err)
 	}
 
 	return db
