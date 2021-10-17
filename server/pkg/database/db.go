@@ -19,7 +19,7 @@ func Connect() *sqlx.DB {
 		os.Exit(1)
 	}
 
-	dbError, err := strconv.Atoi(os.Getenv("DB_PORT"))
+	dbPort, err := strconv.Atoi(os.Getenv("DB_PORT"))
 
 	if err != nil {
 		log.Fatalln(err)
@@ -27,10 +27,10 @@ func Connect() *sqlx.DB {
 
 	host, port, user, password, dbname :=
 		os.Getenv("DB_HOST"),
-		dbError,
+		dbPort,
 		os.Getenv("DB_USER"),
-		os.Getenv("DB_HOST"),
-		os.Getenv("DB_PASSWORD")
+		os.Getenv("DB_PASSWORD"),
+		os.Getenv("DB_NAME")
 
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s", host, port, user, password, dbname)
 

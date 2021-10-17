@@ -1,14 +1,15 @@
-version: '3'
+version: '3.7'
 services:
   postgres:
     image: postgres:latest
-    container_name: meals_finder_pg_db
+    restart: always
     environment:
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_DB=${DB_NAME}
-      - DATABASE_HOST=${DB_HOST}
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=meals_finder
+    logging:
+      options:
+        max-size: 10m
+        max-file: '3'
     ports:
       - '5432:5432'
-    volumes:
-      - database-data:/var/lib/postgresql/data/

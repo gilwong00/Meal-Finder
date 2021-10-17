@@ -1,12 +1,12 @@
-package controllers
+package handlers
 
 import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
 
-	"github.com/gilwong00/server/database"
-	"github.com/gilwong00/server/models"
+	"github.com/gilwong00/server/pkg/database"
+	"github.com/gilwong00/server/pkg/models"
 )
 
 func CreateUser(w http.ResponseWriter, r *http.Request) {
@@ -20,7 +20,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var user models.User
-	json.Unmarshal(body, user)
+	json.Unmarshal(body, &user)
 
 	db := database.Connect()
 
