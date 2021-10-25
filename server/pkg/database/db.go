@@ -6,12 +6,15 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/jmoiron/sqlx"
+	"github.com/gilwong00/server/pkg/models"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
-func Connect() *sqlx.DB {
+func Connect() *gorm.DB {
+	var DB *gorm.DB
 	err := godotenv.Load()
 
 	if err != nil {
@@ -34,11 +37,14 @@ func Connect() *sqlx.DB {
 
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s", host, port, user, password, dbname)
 
-	db, err := sqlx.Connect("postgres", psqlInfo)
+	DB, err = gorm.Open(postgres.Open(psqlInfo), &gorm.Config{})
 
 	if err != nil {
-		log.Fatalln(err)
+		fmt.Println(err.Error())
+		panic("Cannot connect to DB")
 	}
 
-	return db
+	DB.AutoMigrate(&models.User{})
+
+	return DB
 }

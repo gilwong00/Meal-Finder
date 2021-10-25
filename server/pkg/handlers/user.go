@@ -2,11 +2,14 @@ package handlers
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
 	"github.com/gilwong00/server/pkg/database"
 	"github.com/gilwong00/server/pkg/models"
+	"gorm.io/gorm"
 )
 
 func CreateUser(w http.ResponseWriter, r *http.Request) {
@@ -24,7 +27,16 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 
 	db := database.Connect()
 
-	db.Close()
+	if err := db.Create(&user).Error; err != nil {
+		if !errors.Is(err, gorm.ErrRecordNotFound) {
+			fmt.Println("record already exists")
+		}
+
+		w.WriteHeader(http.StatusBadRequest)
+		w.Header().Add("Content-Type", "application/json")
+		json.NewEncoder(w).Encode("Email address has already been used")
+		return
+	}
 
 	w.WriteHeader(http.StatusCreated)
 	w.Header().Add("Content-Type", "application/json")
